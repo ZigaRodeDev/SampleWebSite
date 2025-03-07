@@ -1,6 +1,4 @@
 WebIO - UI/UX Design
-
-Description
 This project is a simple and learning project for Web development carrere. It is a HTML webpage showcasing the services of a company named WebIO. The page focuses on UI/UX Design and related services such as SEO, SEM, user research, and web copywriting.
 
 File Structure
