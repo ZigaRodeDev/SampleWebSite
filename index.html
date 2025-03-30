@@ -1,34 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebIO - UI/UX Design</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebIO - UI/UX Design</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<!-- This is body -->
-<body style="background-color: black;">
-<h1 style="color:white">UI/UX DESIGN</h1>
-<p style="color:white">Envisaging the personality of your company is our main goal</p>
-<div id="services">
-    <h3 style="color:white">Our services</h3>
-    <span style="color:white">UI design</span>
-    <span style="color:white">UX design</span>
-    <span style="color:white">SEO</span>
-    <br>
-    <span style="color:white">SEM</span>
-    <span style="color:white">User research</span>
-    <span style="color:white">Web copywriting</span>
-</div>
-<p style="color:white">We provide professional assistance on all stages of Web development.
-Whether zou need to create your website, improve it or increase its reach, we are here to help</p>
-    <button target="_blank" style="color:black">Contact us</button>
-<div id="form">
-    <p style="color:white">Ask a question</p>
-    <input type="text" id="name" name="name" placeholder="Name"><br>
-    <input type="text" id="mail" name="mail" placeholder="Mail"><br>
-    <input type="text" id="question" name="question" placeholder="Question"><br>
-    <button>Send</button>
-</div>
+<body>
+
+<!-- Naslovnica -->
+ <header>
+  <h1 class="title">UI/UX DESIGN</h1>
+  <p class="subtitle">Envisaging the personality of your company is our main goal</p>
+</header>
+
+  <section id="services">
+    <h3>Our Services</h3>
+    <div class="service-list">
+      <span>UI design</span>
+      <span>UX design</span>
+      <span>SEO</span>
+      <span>SEM</span>
+      <span>User research</span>
+      <span>Web copywriting</span>
+    </div>
+    <p>
+      We provide professional assistance on all stages of web development. Whether you need to create your website, improve it, or increase its reach, we are here to help.
+    </p>
+    <button target="_blank">Contact us</button>
+  </section>
+
+  <!-- Dodatna vsebina -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      At WebIO, we believe that every business has a unique story to tell. Our team of experienced designers, developers, and digital marketers work together to bring your vision to life. With a focus on creativity and innovation, we help you stand out in a competitive market.
+    </p>
+  </section>
+
+  <section id="portfolio">
+    <h2>Our Portfolio</h2>
+    <p>
+      Take a look at some of our recent projects that showcase our expertise in UI/UX design and web development. We are proud of our work and the results we have achieved for our clients.
+    </p>
+    <div class="portfolio-items">
+      <article class="portfolio-item">
+        <h3>Project One</h3>
+        <p>A modern and responsive website design for a leading tech company.</p>
+      </article>
+      <article class="portfolio-item">
+        <h3>Project Two</h3>
+        <p>An innovative e-commerce platform that enhances user engagement and drives sales.</p>
+      </article>
+      <article class="portfolio-item">
+        <h3>Project Three</h3>
+        <p>A creative digital solution for a startup, combining stunning visuals with seamless functionality.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <blockquote>
+      <p>"WebIO transformed our online presence. Their attention to detail and innovative design exceeded our expectations."</p>
+      <footer>— Alex, CEO of TechCorp</footer>
+    </blockquote>
+    <blockquote>
+      <p>"The team at WebIO is creative and professional. We highly recommend their services."</p>
+      <footer>— Jamie, Founder of Startup Inc.</footer>
+    </blockquote>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or would like to discuss your project, please reach out to us.</p>
+    <div id="form">
+      <form action="submit_form.php" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Your Name"><br>
+        <label for="mail">Email:</label><br>
+        <input type="email" id="mail" name="mail" placeholder="Your Email"><br>
+        <label for="question">Your Question:</label><br>
+        <textarea id="question" name="question" placeholder="Ask your question here"></textarea><br>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 WebIO. All rights reserved.</p>
+  </footer>
 </body>
 </html>
