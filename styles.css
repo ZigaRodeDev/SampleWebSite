@@ -16,12 +16,12 @@ body {
   padding: 20px;
 }
 
-/* Glava strani */
+/* Glava strani z manjšo ozadno sliko in overlay gradientom */
 header {
-  background-color: #000;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('header_1.jpg') center/48% no-repeat;
   color: #fff;
   padding: 40px 20px;
-  /* Privzeto centriranje se bo uporabilo le, če element nima lastne poravnave */
   text-align: center;
   margin-bottom: 30px;
   border-radius: 8px;
@@ -33,14 +33,13 @@ header:hover {
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
-/* Nov dodatek: Header naslov in podnaslov */
-/* Naslov (npr. h1 z razredom .title) bo poravnan na desno */
+/* Header: naslov in podnaslov */
 header .title {
   text-align: right;
   font-size: 3.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* Podnaslov (npr. p z razredom .subtitle) bo centriran in bo imel dodatni razmik zgoraj */
 header .subtitle {
   text-align: center;
   margin-top: 250px;
@@ -63,16 +62,16 @@ section {
   margin: 30px auto;
   max-width: 1200px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 section:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Sekcija storitev: razdeljena v 2 vrstici po 3 kvadratke */
+/* Sekcija storitev: razdeljena v 2 vrstici po 3 elemente */
 #services .service-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -81,23 +80,27 @@ section:hover {
 }
 
 #services span {
-  background-color: #222;
-  color: #fff;
-  padding: 20px;
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
   border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   font-size: 0.9em;
-  aspect-ratio: 1 / 1; /* Ohrani kvadratno obliko */
+  aspect-ratio: 3 / 2;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  border: 4px solid;
+  border-image: linear-gradient(45deg, #46D5FF, #AC89DD) 1;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
 }
 
 #services span:hover {
-  background-color: #333;
+  background-color: #fff;
   transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
 }
 
 /* Portfelj */
@@ -160,22 +163,30 @@ section:hover {
   outline: none;
 }
 
+/* Slog gumbov z 3D učinkom */
 #form button,
 button {
   padding: 12px;
   border: none;
-  background-color: #000;
+  background: linear-gradient(45deg, #46D5FF, #AC89DD);
   color: #fff;
   cursor: pointer;
   border-radius: 8px;
   font-size: 1em;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 4px 0 #333;
+  align-items: center;
 }
 
 #form button:hover,
 button:hover {
-  background-color: #333;
-  transform: scale(1.03);
+  background: linear-gradient(45deg, #46D5FF, #AC89DD);
+}
+
+#form button:active,
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #333;
 }
 
 /* Noga strani */
