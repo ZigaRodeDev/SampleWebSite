@@ -8,11 +8,27 @@
 </head>
 <body>
 
-<!-- Naslovnica -->
- <header>
-  <h1 class="title">UI/UX DESIGN</h1>
-  <p class="subtitle">Envisaging the personality of your company is our main goal</p>
-</header>
+  <!-- Hamburger meni na desni strani -->
+  <div class="hamburger-menu">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="dropdown-content" id="dropdownContent">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+  <!-- Naslovnica -->
+  <header>
+    <h1 class="title">UI/UX DESIGN</h1>
+    <p class="subtitle">Envisaging the personality of your company is our main goal</p>
+  </header>
+
+  <div class="dna-container" id="dnaContainer"></div>
 
   <section id="services">
     <h3>Our Services</h3>
@@ -29,8 +45,6 @@
     </p>
     <button target="_blank">Contact us</button>
   </section>
-
-
 
   <!-- Dodatna vsebina -->
   <section id="about">
@@ -89,9 +103,26 @@
     </div>
   </section>
 
-<footer>
+  <footer>
+    <!-- Odsek za socialna omrežja -->
+    <div class="social-media">
+      <a href="https://wa.me/your-number" target="_blank">
+        <img src="socialsPictures/whatsapp.jpg" alt="WhatsApp">
+      </a>
+      <a href="https://www.linkedin.com/in/%C5%BEiga-rode-462796238/?trk=public-profile-join-page" target="_blank">
+        <img src="socialsPictures/linkedin.png" alt="LinkedIn">
+      </a>
+      <a href="https://www.instagram.com/ziga_rode1806/" target="_blank">
+        <img src="socialsPictures/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/ZigaRode21/" target="_blank">
+        <img src="socialsPictures/facebook.png" alt="Facebook">
+      </a>
+    </div>
     <p>&copy; 2025 WebIO. All rights reserved.</p>
   </footer>
-<script src="script.js"></script>
+
+  <!-- Vključitev JavaScript datoteke -->
+  <script src="script.js"></script>
 </body>
 </html>

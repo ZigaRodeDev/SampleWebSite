@@ -7,6 +7,94 @@
   box-sizing: border-box;
 }
 
+/* Hamburger meni in ikona - fiksno na desni strani */
+.hamburger-menu {
+  position: fixed;
+  top: 63px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* Hamburger ikona kot krog z belim ozadjem */
+.hamburger {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #111;
+  padding: 2px;
+}
+
+/* Hamburger črte */
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Različne dolžine črt: najdaljša zgoraj, nato 80% in 60% */
+.hamburger span:nth-child(1) {
+  width: 100%;
+}
+.hamburger span:nth-child(2) {
+  width: 80%;
+}
+.hamburger span:nth-child(3) {
+  width: 60%;
+}
+
+/* Animacijski razred za efekt hamburgerja */
+.hamburger.hover-animate {
+  animation: smartAnimate 300ms ease-out forwards;
+}
+
+@keyframes smartAnimate {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Spustni meni – odpre se ob hoverju hamburger menija ali nad samim menijem */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 271px;
+  height: 441px;
+  top: 40px;      /* prilagodite po potrebi */
+  right: 0;        /* meni je poravnan s desnim robom hamburger ikone */
+  background-color: #111;
+  border: 2px solid #fff;  /* beli rob, da je meni lažje viden */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.hamburger-menu:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+/* Stili za povezave v spustnem meniju */
+.dropdown-content a {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #575757;
+}
+
 /* Osnovni slog za telo strani z uporabo fonta Audiowide */
 body {
   font-family: 'Audiowide', sans-serif;
@@ -16,25 +104,35 @@ body {
   padding: 20px;
 }
 
-/* Glava strani z manjšo ozadno sliko in overlay gradientom */
+/* Header – odstranimo ozadje in dodamo pseudo-element,
+   da bo slika ostala samostojna enota in naslov ne bo vplival nanjo */
 header {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              url('header_1.jpg') center/48% no-repeat;
+  position: relative;
   color: #fff;
-  padding: 40px 20px;
+  padding: 220px 20px 40px;  /* zgornji padding poveča razmik za naslov */
   text-align: center;
   margin-bottom: 30px;
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: none; /* ozadje bomo dodali prek pseudo-elementa */
+  transition: none;
 }
 
-header:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 500px; /* Manjša višina slike */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('header_1.jpg') center top no-repeat;
+  background-size: contain;
+  z-index: -1;
 }
 
 /* Header: naslov in podnaslov */
 header .title {
+  margin-top: 300px; /* naslov se premakne nižje; prilagodite po želji */
   text-align: right;
   font-size: 3.5em;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
@@ -74,36 +172,33 @@ section:hover {
 /* Sekcija storitev: razdeljena v 2 vrstici po 3 elemente */
 #services .service-list {
   display: grid;
-  grid-template-columns: repeat(3, 150px); /* Fiksna širina stolpcev */
-  gap: 100px;                           /* Razmik med elementi */
-  margin-bottom: 100px;
-  justify-content: center;             /* Centriramo elemente v kontejnerju */
+  grid-template-columns: repeat(3, 150px);  /* fiksna širina stolpcev */
+  gap: 100px;                               /* razmik med elementi */
+  margin-bottom: 100px;                     /* večji razmak med elementi in spodnjim besedilom */
+  justify-content: center;
 }
 
 #services span {
   background-color: #ffffff;
   color: #333;
   padding: 10px;
-  border-radius: 0px;
+  border-radius: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   font-size: 0.9em;
-  aspect-ratio: 5 / 1;                 /* Kvadratki */
+  aspect-ratio: 5 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 4px solid;
   border: 5px solid rgba(70, 213, 255, 1);
-  box-shadow: 10px 10px 4px 0px rgba(172, 137, 221, 1);
+  box-shadow: 10px 10px 4px 0 rgba(172, 137, 221, 1);
 }
 
 #services span:hover {
   transform: translateY(-3px);
-  /* Lahko pustite enak box-shadow ali ga prilagodite za bolj izrazit hover efekt */
-  box-shadow: 10px 10px 4px 0px rgba(172, 137, 221, 1);
+  box-shadow: 10px 10px 4px 0 rgba(172, 137, 221, 1);
 }
-
 
 /* Portfelj */
 .portfolio-items {
@@ -199,11 +294,6 @@ footer {
   color: #fff;
   margin-top: 30px;
   border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-footer:hover {
-  background-color: #333;
 }
 
 /* Responsivno oblikovanje */
@@ -211,12 +301,42 @@ footer:hover {
   header h1 {
     font-size: 2.2em;
   }
-
   header p {
     font-size: 1em;
   }
-
   section {
     padding: 20px;
   }
+  .dna-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 50px auto;
+    background-color: #000;
+    border: 1px solid #333;
+  }
+  .dna-container .dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #46D5FF;
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+  }
+}
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.social-media a img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.5s ease;
+}
+
+.social-media a img:hover {
+  transform: scale(1.1);
 }
