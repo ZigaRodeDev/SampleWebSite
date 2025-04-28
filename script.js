@@ -62,19 +62,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /***** Hamburger meni in animacija *****/
-  var hamburger = document.getElementById("hamburger");
-  if (hamburger) {
-    hamburger.addEventListener("mouseenter", function () {
-      // Dodamo animacijski razred, ki sproži "smart animate" efekt
-      hamburger.classList.add("hover-animate");
+const hamburgerWrapper = document.getElementById('hamburgerWrapper');
+const dropdownMenu = document.getElementById('dropdownMenu');
 
-      // Odstranili smo preusmeritev, ker URL "home-menu.html" povzroča 404 napako.
-      // Če želite preusmeriti, poskrbite, da URL ustreza obstoječi datoteki, npr.:
-      // setTimeout(function () {
-      //   window.location.href = "index.html"; // Posodobite URL, da ustreza vaši datoteki
-      // }, 300);
-    });
-  }
+if (hamburgerWrapper && dropdownMenu) {
+  hamburgerWrapper.addEventListener('mouseenter', function () {
+    dropdownMenu.classList.add('show');
+  });
+
+  hamburgerWrapper.addEventListener('mouseleave', function () {
+    dropdownMenu.classList.remove('show');
+  });
+}
 
   /***** DNA dinamične pikice *****/
   var container = document.getElementById('dnaContainer');

@@ -1,21 +1,261 @@
+/* ==============================
+   Import Fonts
+============================== */
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
-/* Reset osnovnih slogov */
+/* ==============================
+   Base Styles
+============================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Hamburger meni in ikona - fiksno na desni strani */
+body {
+  font-family: 'Audiowide', sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* ==============================
+   Header Styles
+============================== */
+header {
+  position: relative;
+  color: #fff;
+  padding: 220px 20px 40px;
+  text-align: center;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  background: none;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('header_1.jpg') center top no-repeat;
+  background-size: contain;
+  z-index: -1;
+}
+
+header .title {
+  margin-top: 300px;
+  text-align: right;
+  font-size: 3.5em;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+header .subtitle {
+  text-align: center;
+  margin-top: 250px;
+}
+
+/* ==============================
+   Section & Typography Styles
+============================== */
+h1, h2, h3, p {
+  margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+}
+
+section {
+  background-color: #111;
+  padding: 30px;
+  margin: 30px auto;
+  max-width: 1200px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(255,255,255,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
+
+/* ==============================
+   Services Section
+============================== */
+#services .service-list {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  gap: 100px;
+  margin-bottom: 100px;
+  justify-content: center;
+}
+
+#services span {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  border: 5px solid rgba(70,213,255,1);
+  box-shadow: 10px 10px 4px rgba(172,137,221,1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-size: 0.9em;
+  aspect-ratio: 5/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#services span:hover {
+  transform: translateY(-3px);
+}
+
+/* ==============================
+   Portfolio Section
+============================== */
+.portfolio-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.portfolio-item {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.1);
+}
+
+/* ==============================
+   Testimonials Section
+============================== */
+#testimonials blockquote {
+  border-left: 4px solid #fff;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  font-style: italic;
+  transition: transform 0.3s ease;
+}
+
+#testimonials blockquote:hover {
+  transform: translateX(5px);
+}
+
+/* ==============================
+   Contact Form Section - UREDITEV
+============================== */
+#form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background-color: #111;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+}
+
+#form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#form input[type="text"],
+#form input[type="email"],
+#form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #1c1c1c;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+#form input[type="text"]:focus,
+#form input[type="email"]:focus,
+#form textarea:focus {
+  border-color: #46D5FF;
+  background-color: #222;
+  outline: none;
+  box-shadow: 0 0 8px rgba(70,213,255,0.6);
+}
+
+#form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+#form button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(45deg, #46D5FF, #AC89DD);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(70,213,255,0.3);
+}
+
+#form button:hover {
+  background: linear-gradient(45deg, #5ee4ff, #d1b2f3);
+  transform: translateY(-2px);
+}
+
+#form button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(70,213,255,0.3);
+}
+
+
+/* ==============================
+   Footer Styles
+============================== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+  margin-top: 30px;
+  border-radius: 8px;
+}
+
+/* ==============================
+   Hamburger & Dropdown Menu
+============================== */
+.hamburger-wrapper {
+  position: fixed;
+  top: 63px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .hamburger-menu {
   position: fixed;
   top: 63px;
   right: 20px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-/* Hamburger ikona kot krog z belim ozadjem */
 .hamburger {
   width: 24px;
   height: 24px;
@@ -29,7 +269,6 @@
   padding: 2px;
 }
 
-/* Hamburger črte */
 .hamburger span {
   display: block;
   height: 3px;
@@ -37,266 +276,67 @@
   border-radius: 2px;
 }
 
-/* Različne dolžine črt: najdaljša zgoraj, nato 80% in 60% */
-.hamburger span:nth-child(1) {
-  width: 100%;
-}
-.hamburger span:nth-child(2) {
-  width: 80%;
-}
-.hamburger span:nth-child(3) {
-  width: 60%;
-}
+.hamburger span:nth-child(1) { width: 100%; }
+.hamburger span:nth-child(2) { width: 80%; }
+.hamburger span:nth-child(3) { width: 60%; }
 
-/* Animacijski razred za efekt hamburgerja */
-.hamburger.hover-animate {
-  animation: smartAnimate 300ms ease-out forwards;
-}
-
-@keyframes smartAnimate {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.1);
-  }
-}
-
-/* Spustni meni – odpre se ob hoverju hamburger menija ali nad samim menijem */
 .dropdown-content {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: absolute;
-  width: 271px;
-  height: 441px;
-  top: 40px;      /* prilagodite po potrebi */
-  right: 0;        /* meni je poravnan s desnim robom hamburger ikone */
+  width: 160px;
+  top: 40px;
+  right: 0;
   background-color: #111;
-  border: 2px solid #fff;  /* beli rob, da je meni lažje viden */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 2px solid #fff;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   border-radius: 4px;
-  z-index: 1000;
+  z-index: 999;
+  transition: visibility 0s, opacity 0.3s ease, transform 0.3s ease;
 }
 
-.hamburger-menu:hover .dropdown-content,
-.dropdown-content:hover {
-  display: block;
+.dropdown-content.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Stili za povezave v spustnem meniju */
 .dropdown-content a {
+  position: relative;
   color: #fff;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  width: 100%;
   transition: background-color 0.3s ease;
+}
+
+.dropdown-content a::after {
+  content: '';
+  display: block;
+  margin-top: 4px;
+  height: 2px;
+  background: #fff;
+  width: 0;
+  border-radius: 1px;
+  transition: width 0.4s ease;
 }
 
 .dropdown-content a:hover {
   background-color: #575757;
 }
 
-/* Osnovni slog za telo strani z uporabo fonta Audiowide */
-body {
-  font-family: 'Audiowide', sans-serif;
-  background-color: #000;
-  color: #fff;
-  line-height: 1.6;
-  padding: 20px;
+.dropdown-content a:hover::after {
+  width: 100%;
 }
 
-/* Header – odstranimo ozadje in dodamo pseudo-element,
-   da bo slika ostala samostojna enota in naslov ne bo vplival nanjo */
-header {
-  position: relative;
-  color: #fff;
-  padding: 220px 20px 40px;  /* zgornji padding poveča razmik za naslov */
-  text-align: center;
-  margin-bottom: 30px;
-  border-radius: 8px;
-  background: none; /* ozadje bomo dodali prek pseudo-elementa */
-  transition: none;
-}
-
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 500px; /* Manjša višina slike */
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-              url('header_1.jpg') center top no-repeat;
-  background-size: contain;
-  z-index: -1;
-}
-
-/* Header: naslov in podnaslov */
-header .title {
-  margin-top: 300px; /* naslov se premakne nižje; prilagodite po želji */
-  text-align: right;
-  font-size: 3.5em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-header .subtitle {
-  text-align: center;
-  margin-top: 250px;
-}
-
-/* Naslovi in odstavki */
-h1, h2, h3 {
-  margin-bottom: 20px;
-  font-weight: 300;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-/* Sekcije */
-section {
-  background-color: #111;
-  padding: 30px;
-  margin: 30px auto;
-  max-width: 1200px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-}
-
-/* Sekcija storitev: razdeljena v 2 vrstici po 3 elemente */
-#services .service-list {
-  display: grid;
-  grid-template-columns: repeat(3, 150px);  /* fiksna širina stolpcev */
-  gap: 100px;                               /* razmik med elementi */
-  margin-bottom: 100px;                     /* večji razmak med elementi in spodnjim besedilom */
-  justify-content: center;
-}
-
-#services span {
-  background-color: #ffffff;
-  color: #333;
-  padding: 10px;
-  border-radius: 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  font-size: 0.9em;
-  aspect-ratio: 5 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border: 5px solid rgba(70, 213, 255, 1);
-  box-shadow: 10px 10px 4px 0 rgba(172, 137, 221, 1);
-}
-
-#services span:hover {
-  transform: translateY(-3px);
-  box-shadow: 10px 10px 4px 0 rgba(172, 137, 221, 1);
-}
-
-/* Portfelj */
-.portfolio-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.portfolio-item {
-  background-color: #111;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.portfolio-item:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
-}
-
-/* Mnenja strank */
-#testimonials blockquote {
-  border-left: 4px solid #fff;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  font-style: italic;
-  transition: transform 0.3s ease;
-}
-
-#testimonials blockquote:hover {
-  transform: translateX(5px);
-}
-
-/* Kontaktni obrazec */
-#form form {
-  display: flex;
-  flex-direction: column;
-}
-
-#form input[type="text"],
-#form input[type="email"],
-#form textarea {
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #444;
-  border-radius: 8px;
-  font-size: 1em;
-  background-color: #222;
-  color: #fff;
-  transition: border-color 0.3s ease;
-}
-
-#form input[type="text"]:focus,
-#form input[type="email"]:focus,
-#form textarea:focus {
-  border-color: #fff;
-  outline: none;
-}
-
-/* Slog gumbov z 3D učinkom */
-#form button,
-button {
-  padding: 12px;
-  border: none;
-  background: linear-gradient(45deg, #46D5FF, #AC89DD);
-  color: #fff;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.1s ease;
-  box-shadow: 0 4px 0 #333;
-  align-items: center;
-}
-
-#form button:hover,
-button:hover {
-  background: linear-gradient(45deg, #46D5FF, #AC89DD);
-}
-
-#form button:active,
-button:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 #333;
-}
-
-/* Noga strani */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #000;
-  color: #fff;
-  margin-top: 30px;
-  border-radius: 8px;
-}
-
-/* Responsivno oblikovanje */
+/* ==============================
+   Responsive Design
+============================== */
 @media (max-width: 768px) {
   header h1 {
     font-size: 2.2em;
@@ -324,6 +364,10 @@ footer {
     transition: transform 0.5s ease;
   }
 }
+
+/* ==============================
+   Social Media Links
+============================== */
 .social-media {
   display: flex;
   justify-content: center;
