@@ -1,36 +1,59 @@
 document.addEventListener('DOMContentLoaded', function() {
-  /***** Kontaktni obrazec *****/
+  /***** Kontaktni obrazec - Formspree implementacija *****/
   var sendBtn = document.getElementById('sendBtn');
   if (sendBtn) {
     sendBtn.addEventListener('click', function(event) {
-      event.preventDefault(); // Prepreči oddajo obrazca
+      event.preventDefault();
 
-      // Pridobimo obrazec in posamezna polja
-      var form = document.querySelector('#form form');
-      var nameInput = document.getElementById('name');
-      var emailInput = document.getElementById('mail');
-      var questionInput = document.getElementById('question');
+      const form = document.getElementById('form');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('mail');
+      const questionInput = document.getElementById('question');
 
-      // Preprosta validacija: preverimo, če so vsa polja izpolnjena
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
       if (nameInput.value.trim() === "" || emailInput.value.trim() === "" || questionInput.value.trim() === "") {
-        showMessage('Check the form and try again!', '#dc3545'); // Rdeče obvestilo za napako
+        showMessage('Please fill in all fields.', '#dc3545');
         return;
       }
 
-      // Če validacija uspe, prikažemo sporočilo o uspehu
-      showMessage('Message sent successfully!', '#28a745');
+      if (!emailPattern.test(emailInput.value.trim())) {
+        showMessage('Please enter a valid email address.', '#dc3545');
+        return;
+      }
 
-      // Po uspehu (opcijsko) resetiramo obrazec
-      form.reset();
+      const formData = new FormData(form);
+
+      showMessage('Sending...', '#007bff');
+
+      fetch("https://formspree.io/f/xwpovbrq", {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        console.log('Response status:', response.status);
+        if (response.ok || response.redirected || response.status === 302) {
+          showMessage('Message sent successfully!', '#28a745');
+          form.reset();
+          console.log('Form reset.');
+        } else {
+          showMessage('Sending failed. Please try again.', '#dc3545');
+        }
+      })
+      .catch(error => {
+        console.error('Error sending form:', error);
+        showMessage('An error occurred. Please try again.', '#dc3545');
+      });
     });
   }
 
-  // Funkcija za prikaz sporočila z fade in/fade out učinkom
   function showMessage(text, backgroundColor) {
     var messageDiv = document.createElement('div');
     messageDiv.textContent = text;
 
-    // Nastavimo osnovne CSS lastnosti za sporočilo
     messageDiv.style.position = 'fixed';
     messageDiv.style.top = '0';
     messageDiv.style.left = '0';
@@ -42,17 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
     messageDiv.style.fontSize = '1.2em';
     messageDiv.style.zIndex = '1000';
     messageDiv.style.transition = 'opacity 0.5s ease';
-    messageDiv.style.opacity = '0'; // Začetno skrito
+    messageDiv.style.opacity = '0';
 
-    // Dodamo sporočilo v telo strani
     document.body.appendChild(messageDiv);
 
-    // Fade in: sporočilo postopoma prikažemo
     setTimeout(function() {
       messageDiv.style.opacity = '1';
     }, 100);
 
-    // Po 3 sekundah sporočilo fade out in odstranimo
     setTimeout(function() {
       messageDiv.style.opacity = '0';
       setTimeout(function() {
@@ -62,44 +82,39 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /***** Hamburger meni in animacija *****/
-const hamburgerWrapper = document.getElementById('hamburgerWrapper');
-const dropdownMenu = document.getElementById('dropdownMenu');
+  const hamburgerWrapper = document.getElementById('hamburgerWrapper');
+  const dropdownMenu = document.getElementById('dropdownMenu');
 
-if (hamburgerWrapper && dropdownMenu) {
-  hamburgerWrapper.addEventListener('mouseenter', function () {
-    dropdownMenu.classList.add('show');
-  });
+  if (hamburgerWrapper && dropdownMenu) {
+    hamburgerWrapper.addEventListener('mouseenter', function () {
+      dropdownMenu.classList.add('show');
+    });
 
-  hamburgerWrapper.addEventListener('mouseleave', function () {
-    dropdownMenu.classList.remove('show');
-  });
-}
+    hamburgerWrapper.addEventListener('mouseleave', function () {
+      dropdownMenu.classList.remove('show');
+    });
+  }
 
   /***** DNA dinamične pikice *****/
   var container = document.getElementById('dnaContainer');
   if (container) {
-    // Nastavitve: število vrst, razmik med vrstami, fiksni horizontalni položaji
-    const numRows = 10; // število vrst (vsaka vrst ima dve pikici)
+    const numRows = 10;
     const containerHeight = container.clientHeight;
     const verticalSpacing = containerHeight / (numRows + 1);
-    const leftX = 30; // fiksna oddaljenost leve pikice
-    const rightX = container.clientWidth - 30 - 10; // 10 je širina pikice
+    const leftX = 30;
+    const rightX = container.clientWidth - 30 - 10;
 
-    // Ustvarimo dve pikici na vsaki vrstici
     for (let i = 1; i <= numRows; i++) {
-      const y = i * verticalSpacing - 5; // prilagoditev, da je pikica centrirana (polovica višine)
+      const y = i * verticalSpacing - 5;
 
-      // Leva pikica
       let dotLeft = document.createElement('div');
       dotLeft.classList.add('dot');
       dotLeft.style.left = leftX + 'px';
       dotLeft.style.top = y + 'px';
-      // Shranimo prvotni položaj kot podatkovni atribut
       dotLeft.dataset.origX = leftX;
       dotLeft.dataset.origY = y;
       container.appendChild(dotLeft);
 
-      // Desna pikica
       let dotRight = document.createElement('div');
       dotRight.classList.add('dot');
       dotRight.style.left = rightX + 'px';
@@ -109,18 +124,15 @@ if (hamburgerWrapper && dropdownMenu) {
       container.appendChild(dotRight);
     }
 
-    // Ob premiku kurzorja nad DNA kontejnerjem se pikice "razpršijo"
     container.addEventListener('mouseenter', function () {
       const dots = container.querySelectorAll('.dot');
       dots.forEach(dot => {
-        // Naključni offset med -20 in 20 pikslov
         const offsetX = Math.random() * 40 - 20;
         const offsetY = Math.random() * 40 - 20;
         dot.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       });
     });
 
-    // Ob odstranitvi kurzorja se pikice vrnejo na prvotni položaj
     container.addEventListener('mouseleave', function () {
       const dots = container.querySelectorAll('.dot');
       dots.forEach(dot => {

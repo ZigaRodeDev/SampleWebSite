@@ -22,21 +22,23 @@
 <body>
 
   <!-- Hamburger meni -->
-<div class="hamburger-wrapper" id="hamburgerWrapper">
+<nav class="hamburger-wrapper" id="hamburgerWrapper">
   <div class="hamburger-menu" id="hamburgerMenu">
     <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <div class="dropdown-content" id="dropdownMenu">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
+      <div class="dropdown-content" id="dropdownMenu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Case studies</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
     </div>
-  </div>
-</div>
+</nav>
 
   <!-- Naslovnica -->
   <header>
@@ -98,21 +100,29 @@
     </section>
 
     <section id="contact">
-      <h2>Contact Us</h2>
-      <p>If you have any questions or would like to discuss your project, please reach out to us.</p>
-      <form action="submit_form.php" method="post" id="form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Your Name">
+  <h2>Contact Us</h2>
+  <p>If you have any questions or would like to discuss your project, please reach out to us.</p>
 
-        <label for="mail">Email:</label>
-        <input type="email" id="mail" name="mail" placeholder="Your Email">
+  <form action="https://formspree.io/f/xwpovbrq" method="POST" id="form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your Name">
 
-        <label for="question">Your Question:</label>
-        <textarea id="question" name="question" placeholder="Ask your question here"></textarea>
+    <label for="mail">Email:</label>
+    <input type="email" id="mail" name="email" placeholder="Your Email">
 
-        <button type="submit" id="sendBtn">Send</button>
-      </form>
-    </section>
+    <label for="question">Your Question:</label>
+    <textarea id="question" name="message" placeholder="Ask your question here"></textarea>
+
+    <!-- Honeypot field to prevent spam -->
+    <input type="text" name="_honey" style="display:none">
+
+    <!-- Auto response & redirect options (optional) -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://your-site.com/thank-you.html">
+
+    <button type="submit" id="sendBtn">Send</button>
+  </form>
+</section>
   </main>
 
   <footer>
@@ -132,7 +142,6 @@
     </div>
     <p>&copy; 2025 WebIO. All rights reserved.</p>
   </footer>
-
   <script src="script.js"></script>
 </body>
 </html>
