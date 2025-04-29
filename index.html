@@ -1,34 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebIO - UI/UX Design</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebIO - UI/UX Design Agency</title>
+
+  <!-- SEO META TAGI -->
+  <meta name="description" content="WebIO je kreativna agencija za UI/UX dizajn, SEO optimizacijo in digitalni marketing. Spremenimo vašo idejo v odlično uporabniško izkušnjo.">
+  <meta name="keywords" content="UI dizajn, UX dizajn, WebIO, SEO optimizacija, spletno oblikovanje, digitalni marketing, razvoj spletnih strani">
+  <meta name="author" content="WebIO Studio">
+  <meta property="og:title" content="WebIO - UI/UX Design Agency">
+  <meta property="og:description" content="Pomagamo podjetjem oblikovati uporabniku prijazne spletne strani, povečati vidnost in doseg.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.webio-example.com">
+  <meta property="og:image" content="https://www.webio-example.com/social-share.jpg">
+  <meta name="robots" content="index, follow">
+
+  <!-- Povezava na CSS -->
+  <link rel="stylesheet" href="styles.css">
 </head>
-<!-- This is body -->
-<body style="background-color: black;">
-<h1 style="color:white">UI/UX DESIGN</h1>
-<p style="color:white">Envisaging the personality of your company is our main goal</p>
-<div id="services">
-    <h3 style="color:white">Our services</h3>
-    <span style="color:white">UI design</span>
-    <span style="color:white">UX design</span>
-    <span style="color:white">SEO</span>
-    <br>
-    <span style="color:white">SEM</span>
-    <span style="color:white">User research</span>
-    <span style="color:white">Web copywriting</span>
+<body>
+
+  <!-- Hamburger meni -->
+<div class="hamburger-wrapper" id="hamburgerWrapper">
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="dropdown-content" id="dropdownMenu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
 </div>
-<p style="color:white">We provide professional assistance on all stages of Web development.
-Whether zou need to create your website, improve it or increase its reach, we are here to help</p>
-    <button target="_blank" style="color:black">Contact us</button>
-<div id="form">
-    <p style="color:white">Ask a question</p>
-    <input type="text" id="name" name="name" placeholder="Name"><br>
-    <input type="text" id="mail" name="mail" placeholder="Mail"><br>
-    <input type="text" id="question" name="question" placeholder="Question"><br>
-    <button>Send</button>
-</div>
+
+  <!-- Naslovnica -->
+  <header>
+    <h1 class="title">UI/UX DESIGN</h1>
+    <p class="subtitle">Envisaging the personality of your company is our main goal</p>
+  </header>
+
+  <div class="dna-container" id="dnaContainer"></div>
+
+  <main>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="service-list">
+        <span>UI Design</span>
+        <span>UX Design</span>
+        <span>SEO</span>
+        <span>SEM</span>
+        <span>User Research</span>
+        <span>Web Copywriting</span>
+      </div>
+      <p>We provide professional assistance on all stages of web development. Whether you need to create your website, improve it, or increase its reach, we are here to help.</p>
+      <a href="#contact"><button>Contact Us</button></a>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <p>At WebIO, we believe that every business has a unique story to tell. Our team of experienced designers, developers, and digital marketers work together to bring your vision to life. With a focus on creativity and innovation, we help you stand out in a competitive market.</p>
+    </section>
+
+    <section id="portfolio">
+      <h2>Our Portfolio</h2>
+      <p>Take a look at some of our recent projects that showcase our expertise in UI/UX design and web development. We are proud of our work and the results we have achieved for our clients.</p>
+      <div class="portfolio-items">
+        <article class="portfolio-item">
+          <h3>Project One</h3>
+          <p>A modern and responsive website design for a leading tech company.</p>
+        </article>
+        <article class="portfolio-item">
+          <h3>Project Two</h3>
+          <p>An innovative e-commerce platform that enhances user engagement and drives sales.</p>
+        </article>
+        <article class="portfolio-item">
+          <h3>Project Three</h3>
+          <p>A creative digital solution for a startup, combining stunning visuals with seamless functionality.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h2>What Our Clients Say</h2>
+      <blockquote>
+        <p>"WebIO transformed our online presence. Their attention to detail and innovative design exceeded our expectations."</p>
+        <footer>— Alex, CEO of TechCorp</footer>
+      </blockquote>
+      <blockquote>
+        <p>"The team at WebIO is creative and professional. We highly recommend their services."</p>
+        <footer>— Jamie, Founder of Startup Inc.</footer>
+      </blockquote>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or would like to discuss your project, please reach out to us.</p>
+      <form action="submit_form.php" method="post" id="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your Name">
+
+        <label for="mail">Email:</label>
+        <input type="email" id="mail" name="mail" placeholder="Your Email">
+
+        <label for="question">Your Question:</label>
+        <textarea id="question" name="question" placeholder="Ask your question here"></textarea>
+
+        <button type="submit" id="sendBtn">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-media">
+      <a href="https://wa.me/your-number" target="_blank">
+        <img src="socialsPictures/whatsapp.jpg" alt="WhatsApp">
+      </a>
+      <a href="https://www.linkedin.com/in/%C5%BEiga-rode-462796238/" target="_blank">
+        <img src="socialsPictures/linkedin.png" alt="LinkedIn">
+      </a>
+      <a href="https://www.instagram.com/ziga_rode1806/" target="_blank">
+        <img src="socialsPictures/instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/ZigaRode21/" target="_blank">
+        <img src="socialsPictures/facebook.png" alt="Facebook">
+      </a>
+    </div>
+    <p>&copy; 2025 WebIO. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
