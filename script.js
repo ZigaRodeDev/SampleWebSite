@@ -81,19 +81,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
   }
 
-  /***** Hamburger meni in animacija *****/
-  const hamburgerWrapper = document.getElementById('hamburgerWrapper');
-  const dropdownMenu = document.getElementById('dropdownMenu');
+/***** Hamburger meni z klikom in zapiranjem zunaj *****/
+const hamburger = document.getElementById('hamburger');
+const dropdownMenu = document.getElementById('dropdownMenu');
 
-  if (hamburgerWrapper && dropdownMenu) {
-    hamburgerWrapper.addEventListener('mouseenter', function () {
-      dropdownMenu.classList.add('show');
-    });
+if (hamburger && dropdownMenu) {
+  hamburger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle('show');
+  });
 
-    hamburgerWrapper.addEventListener('mouseleave', function () {
+  document.addEventListener('click', function (e) {
+    if (!hamburger.contains(e.target) && !dropdownMenu.contains(e.target)) {
       dropdownMenu.classList.remove('show');
-    });
-  }
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      dropdownMenu.classList.remove('show');
+    }
+  });
+}
 
   /***** DNA dinamične pikice *****/
   var container = document.getElementById('dnaContainer');
