@@ -21,6 +21,32 @@ body {
 }
 
 /* ==============================
+   Dots Hover Section
+============================== */
+.dots-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #555;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.dot:hover {
+  background-color: #ff5e57;
+  transform: scale(1.4);
+  box-shadow: 0 0 12px rgba(255, 94, 87, 0.4);
+}
+
+/* ==============================
    Header Styles
 ============================== */
 header {
@@ -219,7 +245,6 @@ section:hover {
   transform: translateY(1px);
   box-shadow: 0 2px 4px rgba(70,213,255,0.3);
 }
-
 
 /* ==============================
    Footer Styles
