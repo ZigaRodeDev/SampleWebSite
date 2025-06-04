@@ -1,106 +1,134 @@
-document.addEventListener('DOMContentLoaded', function() {
-  /***** Kontaktni obrazec - Formspree implementacija *****/
-  var sendBtn = document.getElementById('sendBtn');
-  if (sendBtn) {
-    sendBtn.addEventListener('click', function(event) {
-      event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  /***** Contact Form Handling *****/
+  const sendBtn = document.getElementById('sendBtn');
+  const form = document.getElementById('form');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('mail');
+  const questionInput = document.getElementById('question');
 
-      const form = document.getElementById('form');
-      const nameInput = document.getElementById('name');
-      const emailInput = document.getElementById('mail');
-      const questionInput = document.getElementById('question');
+  if (sendBtn && form && nameInput && emailInput && questionInput) {
+    sendBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
 
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const question = questionInput.value.trim();
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (nameInput.value.trim() === "" || emailInput.value.trim() === "" || questionInput.value.trim() === "") {
-        showMessage('Please fill in all fields.', '#dc3545');
-        return;
+      if (!name || !email || !question) {
+        return showMessage('Please fill in all fields.', '#dc3545');
       }
 
-      if (!emailPattern.test(emailInput.value.trim())) {
-        showMessage('Please enter a valid email address.', '#dc3545');
-        return;
+      if (!emailPattern.test(email)) {
+        return showMessage('Please enter a valid email address.', '#dc3545');
       }
-
-      const formData = new FormData(form);
 
       showMessage('Sending...', '#007bff');
 
-      fetch("https://formspree.io/f/xwpovbrq", {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => {
-        console.log('Response status:', response.status);
+      try {
+        const response = await fetch("https://formspree.io/f/xwpovbrq", {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
         if (response.ok || response.redirected || response.status === 302) {
           showMessage('Message sent successfully!', '#28a745');
           form.reset();
-          console.log('Form reset.');
         } else {
           showMessage('Sending failed. Please try again.', '#dc3545');
         }
-      })
-      .catch(error => {
-        console.error('Error sending form:', error);
+      } catch (error) {
+        console.error('Error:', error);
         showMessage('An error occurred. Please try again.', '#dc3545');
-      });
+      }
     });
   }
 
+  /***** Display Message Helper *****/
   function showMessage(text, backgroundColor) {
-    var messageDiv = document.createElement('div');
-    messageDiv.textContent = text;
+    const msg = document.createElement('div');
+    Object.assign(msg.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100%',
+      backgroundColor,
+      color: '#fff',
+      textAlign: 'center',
+      padding: '15px',
+      fontSize: '1.2em',
+      zIndex: '1000',
+      opacity: '0',
+      transition: 'opacity 0.5s ease'
+    });
 
-    messageDiv.style.position = 'fixed';
-    messageDiv.style.top = '0';
-    messageDiv.style.left = '0';
-    messageDiv.style.width = '100%';
-    messageDiv.style.backgroundColor = backgroundColor;
-    messageDiv.style.color = '#fff';
-    messageDiv.style.textAlign = 'center';
-    messageDiv.style.padding = '15px';
-    messageDiv.style.fontSize = '1.2em';
-    messageDiv.style.zIndex = '1000';
-    messageDiv.style.transition = 'opacity 0.5s ease';
-    messageDiv.style.opacity = '0';
+    msg.textContent = text;
+    document.body.appendChild(msg);
 
-    document.body.appendChild(messageDiv);
-
-    setTimeout(function() {
-      messageDiv.style.opacity = '1';
-    }, 100);
-
-    setTimeout(function() {
-      messageDiv.style.opacity = '0';
-      setTimeout(function() {
-        messageDiv.remove();
-      }, 500);
+    setTimeout(() => msg.style.opacity = '1', 100);
+    setTimeout(() => {
+      msg.style.opacity = '0';
+      setTimeout(() => msg.remove(), 500);
     }, 3000);
   }
 
-/***** Hamburger meni z klikom in zapiranjem zunaj *****/
-const hamburger = document.getElementById('hamburger');
-const dropdownMenu = document.getElementById('dropdownMenu');
+  /***** Hamburger Menu Toggle *****/
+  const hamburger = document.getElementById('hamburger');
+  const dropdown = document.getElementById('dropdownMenu');
+  const hamburgerSpans = hamburger ? hamburger.querySelectorAll('span') : [];
 
-if (hamburger && dropdownMenu) {
-  hamburger.addEventListener('click', function (e) {
-    e.stopPropagation();
-    dropdownMenu.classList.toggle('show');
-  });
+  if (hamburger && dropdown) {
+    const toggleMenu = (show) => {
+      dropdown.classList.toggle('show', show);
+      hamburger.setAttribute('aria-expanded', show ? 'true' : 'false');
+      
+      // Animate hamburger to X when open
+      if (hamburgerSpans.length === 3) {
+        if (show) {
+          // Transform to X
+          hamburgerSpans[0].style.transform = 'rotate(45deg) translate(3px, 3px)';
+          hamburgerSpans[1].style.opacity = '0';
+          hamburgerSpans[2].style.transform = 'rotate(-45deg) translate(3px, -3px)';
+          hamburgerSpans[0].style.width = '22px';
+          hamburgerSpans[2].style.width = '22px';
+        } else {
+          // Reset to hamburger
+          hamburgerSpans[0].style.transform = 'none';
+          hamburgerSpans[1].style.opacity = '1';
+          hamburgerSpans[2].style.transform = 'none';
+          hamburgerSpans[0].style.width = '22px';
+          hamburgerSpans[1].style.width = '16px';
+          hamburgerSpans[2].style.width = '10px';
+        }
+      }
+    };
 
-  document.addEventListener('click', function (e) {
-    if (!hamburger.contains(e.target) && !dropdownMenu.contains(e.target)) {
-      dropdownMenu.classList.remove('show');
-    }
-  });
+    const closeMenu = () => toggleMenu(false);
+    const openMenu = () => toggleMenu(true);
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      dropdownMenu.classList.remove('show');
-    }
-  });
-}
+    hamburger.addEventListener('click', e => {
+      e.stopPropagation();
+      const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+      toggleMenu(!isExpanded);
+    });
+
+    document.addEventListener('click', e => {
+      if (!hamburger.contains(e.target) && !dropdown.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+    
+    // Add hover effect for menu items
+    const menuItems = dropdown.querySelectorAll('a');
+    menuItems.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.transition = 'all 0.3s ease';
+      });
+    });
+  }
 });
