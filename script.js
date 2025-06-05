@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   /***** Contact Form Handling *****/
   const sendBtn = document.getElementById('sendBtn');
-  const form = document.getElementById('form');
+  const form = document.querySelector('#form form');
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('mail');
   const questionInput = document.getElementById('question');
 
-  if (sendBtn && form && nameInput && emailInput && questionInput) {
-    sendBtn.addEventListener('click', async (e) => {
+  if (form && nameInput && emailInput && questionInput) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = nameInput.value.trim();
